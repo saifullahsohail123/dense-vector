@@ -13,7 +13,7 @@ function App() {
       <Hero />
       {/* <Analytics /> */}
       {/* <Newsletter /> */}
-      <Cards />
+      {/* <Cards /> */}
       {/* <Footer /> */}
     </div>
   );
