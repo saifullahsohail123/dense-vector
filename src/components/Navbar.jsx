@@ -10,7 +10,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className='flex justify-between items-center h-24 max-w-[1240px] mx-auto px-4 text-white bg-[linear-gradient(to_right,#260c49_90%,#260c4a_5%,#05000e)]'>
+    <div className='flex justify-between items-center h-24 mx-auto px-4 text-white bg-[linear-gradient(to_right,#260c49_90%,#260c4a_5%,#05000e)]'>
       <h1 className='w-full text-3xl font-bold flex items-center'>
         <img src={LaptopImage} alt='Logo' className='h-8 w-8 mr-2' />
         <span className='text-[#00df9a]'>REACT.</span>
