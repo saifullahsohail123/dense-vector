@@ -10,15 +10,15 @@ const Navbar = () => {
   };
 
   return (
-    <div className='flex justify-between items-center h-24 mx-auto px-4 text-white bg-[linear-gradient(to_right,#260c49_90%,#260c4a_5%,#05000e)]'>
+    <div className='flex justify-between items-center h-24 mx-auto px-12 text-white bg-[linear-gradient(to_right,#260c49_90%,#260c4a_5%,#05000e)]'>
       <h1 className='w-full text-3xl font-bold flex items-center'>
         <img src={LaptopImage} alt='Logo' className='h-8 w-8 mr-2' />
         <span className='text-[#00df9a]'>REACT.</span>
            </h1>
-      <ul className='hidden md:flex items-center'>
-        <li className='p-4'>Home</li>
-        <li className='p-4'>Company</li>
-        <li className='p-4'>Resources</li>
+      <ul className='hidden md:flex items-center space-x-8'>
+        <li className='p-4 text-lg'>Home</li>
+        <li className='p-4 text-lg'>About</li>
+        <li className='p-4 text-lg'>Services</li>
         <li className='p-4 flex items-center'>
       <button className='px-4 py-2 border border-white text-white bg-transparent rounded whitespace-nowrap'>
         Log In
