@@ -1,5 +1,7 @@
 import React from 'react';
 import Typed from 'react-typed';
+import { Link } from 'react-router-dom';
+
 
 const Hero = () => {
   return (
@@ -20,9 +22,11 @@ Generative Technology
   <br /> for HR, Finance, SCM, and Legal
 </p>
 
+<Link to="/dashboard">
         <button className="bg-[#46474c] border border-[#5a5b60] w-[200px] rounded-md font-medium py-3 text-[#ffffff] uppercase hover:bg-[#3b3c3f]">
           Get Started
         </button>
+</Link>
       </main>
 
       <section className="max-w-[1240px] mx-auto pt-10 pb-20">

@@ -6,18 +6,24 @@ import Hero from './components/Hero';
 import Navbar from './components/Navbar';
 import Newsletter from './components/Newsletter';
 import Dashboard from './components/chatbot/Chatbot';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
+  
   return (
+    <Router>
     <div>
-      <Navbar />
-      <Hero />
+      <Routes>
+      <Route path="/" element={<><Navbar /><Hero /></>} />
       {/* <Analytics /> */}
       {/* <Newsletter /> */}
       {/* <Cards /> */}
       {/* <Footer /> */}
-      <Dashboard />
+      <Route path="/dashboard" element={<Dashboard />} />
+      </Routes>
+
     </div>
+    </Router>
   );
 }
 
