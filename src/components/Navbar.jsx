@@ -10,10 +10,10 @@ const Navbar = () => {
   };
 
   return (
-    <div className='flex justify-between items-center h-20 mx-auto px-12 text-white bg-[linear-gradient(to_right,#260c49_98%,#260c4a_90%)]'>
+    <div className='flex justify-between items-center h-20 mx-auto px-12 text-white bg-[linear-gradient(to_right,#393a3c_100%,#2f2f2f_90%)]'>
       <h1 className='w-full text-3xl font-bold flex items-center'>
         <img src={LaptopImage} alt='Logo' className='h-8 w-8 mr-2' />
-        <span className='text-[#00df9a] text-2xl pl-2'>Dense Vector - Enterprise</span>
+        <span className='text-[#fff] text-2xl pl-2'>Dense Vector - Enterprise</span>
            </h1>
       <ul className='hidden md:flex items-center space-x-8'>
         <li className='p-4 text-lg'>Home</li>
