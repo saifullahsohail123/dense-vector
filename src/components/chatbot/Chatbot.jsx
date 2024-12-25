@@ -4,10 +4,13 @@
   import { FaSearch } from "react-icons/fa"; // Ensure you have react-icons installed
   import { useState } from "react";
   import { FiMenu, FiSettings } from "react-icons/fi"; // Import Menu and Settings icons from react-icons
+  import { FaRegThumbsUp, FaRegThumbsDown } from 'react-icons/fa';
+  import { CiCircleCheck } from "react-icons/ci";
+  import { FaDownload } from "react-icons/fa"; // Import the Download icon from react-icons
 
 
 
-  const Sidebar = ({ setMenuOpen, menuOpen }) => {
+  const Sidebar = ({ setMenuOpen, menuOpen, setSelectedMenu }) => {
     return (
       <aside className="w-1/10 bg-[#1F1F1F] text-white flex flex-col relative">
         <div className="h-screen flex flex-col items-center text-white transition-all duration-300">
@@ -25,18 +28,18 @@
             {menuOpen && (
               <div className="absolute top-0 left-full ml-2 bg-[#2B2B2B] p-4 rounded-md shadow-lg">
                 <ul className="space-y-2">
-                  <li className="py-2 px-4 rounded-md hover:bg-gray-600 transition">
-                    Finance
-                  </li>
-                  <li className="py-2 px-4 rounded-md hover:bg-gray-600 transition">
-                    HR
-                  </li>
-                  <li className="py-2 px-4  rounded-md hover:bg-gray-600 transition">
-                    Supply Chain
-                  </li>
-                  <li className="py-2 px-4  rounded-md hover:bg-gray-600 transition">
-                    Legal
-                  </li>
+                  {["Finance", "HR", "Supply Chain", "Legal"].map((item) => (
+                    <li
+                      key={item}
+                      className="py-2 px-4 rounded-md hover:bg-gray-600 transition cursor-pointer"
+                      onClick={() => {
+                        setSelectedMenu(item); // Update the selected menu item
+                        setMenuOpen(false); // Close the menu
+                      }}
+                    >
+                      {item}
+                    </li>
+                  ))}
                 </ul>
               </div>
             )}
@@ -58,24 +61,28 @@
   
   
   
-  const SearchBar = () => (
-      <div className="flex items-center gap-4 mb-6">
-        {/* Heading vertically centered */}
-        <h2 className="text-lg font-semibold flex-shrink-0">DenseVector Enterprise</h2>
-    
-        {/* Search Bar with Icon */}
-        <div className="flex items-center flex-1 px-4 py-2 border border-gray-700 bg-[#2B2B2B] rounded-lg">
-          {/* Search Icon */}
-          <FaSearch className="text-gray-400 mr-3" />
-          {/* Input Field */}
-          <input
-            type="text"
-            placeholder="Who are the highest risks in the Al-Qaeda network today?"
-            className="flex-1 bg-transparent text-white focus:outline-none"
-          />
-        </div>
+  
+  const SearchBar = ({ selectedMenu }) => (
+    <div className="flex items-center gap-4 mb-6">
+      {/* Heading dynamically updates based on the selected menu */}
+      <h2 className="text-lg font-semibold flex-shrink-0">
+        {selectedMenu} - DenseVector Enterprise
+      </h2>
+  
+      {/* Search Bar with Icon */}
+      <div className="flex items-center flex-1 px-4 py-2 border border-gray-700 bg-[#2B2B2B] rounded-lg">
+        {/* Search Icon */}
+        <FaSearch className="text-gray-400 mr-3" />
+        {/* Input Field */}
+        <input
+          type="text"
+          placeholder={`Search insights about ${selectedMenu.toLowerCase()}...`}
+          className="flex-1 bg-transparent text-white focus:outline-none"
+        />
       </div>
-    );
+    </div>
+  );
+  
     
 
   const AISummary = () => {
@@ -123,7 +130,7 @@
   //   }, []);
 
     return (
-      <section className="col-span-2 bg-[#2B2B2B] rounded-lg shadow p-6">
+      <section className="col-span-2 bg-[#2e2f31] rounded-lg shadow p-6">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-lg font-semibold">AI Summary</h2>
           <button className="bg-[#333333] text-white text-sm px-3 py-1 rounded hover:bg-[#4D4D4D]">
@@ -147,73 +154,211 @@
     );
   };
 
-  const ChatArena = () => (
-      <section className="bg-[#2B2B2B] rounded-lg shadow p-6">
-        <h2 className="text-lg font-semibold mb-4">Chat Arena</h2>
-        
+
+
+  const ChatArena = () => {
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+  
+    return (
+      <section className="bg-[#2e2f31] rounded-lg shadow p-6">
+        <h2 className="text-lg font-semibold text-gray-100 mb-4">Chat Arena</h2>
+  
         {/* Server's initial message */}
         <div className="mb-4">
-          <div className="bg-gray-800 p-4 rounded-lg text-sm">
+
+
+
+          <div className="bg-[#393a3c] p-4 rounded-lg text-sm text-gray-200">
+          <div className="flex justify-between items-center">
+      <div className="flex items-start ml-6 gap-2">
+        {/* Left Side: Marcus Dias and Time */}
+        <span>6:48 PM</span> {/* Example time */}
+      </div>
+
+
+    </div>
+
             What can I help you with? Feel free to ask a follow-up question.
           </div>
         </div>
-    
+  
         {/* User's input simulation */}
         <div className="mb-4">
-          <div className="bg-[#333333] p-4 rounded-lg text-sm text-white text-right">
-            Who communicates with Shaykh Mahmud in Iraq?
+  <div className="ml-20 bg-gray-600 p-4 rounded-lg text-sm text-white">
+    <div className="flex justify-between items-center">
+      <div className="flex items-center gap-2">
+        {/* Left Side: Marcus Dias and Time */}
+        <span>Marcus Dias</span>
+        <span>12:00 PM</span> {/* Example time */}
+      </div>
+
+      {/* Right Side: Search Icon */}
+      <button className="text-gray-300 hover:text-white">
+        <FaSearch className="w-5 h-5" />
+      </button>
+    </div>
+
+    {/* Text below the row */}
+    <div className="text-left mt-2">
+      Who communicates with Shaykh Mahmud in Iraq?
+    </div>
+  </div>
+</div>
+
+        <div className="mb-4">
+
+        {/* Relevant News Information */}
+        <div className="bg-[#393a3c] text-white p-6">
+          <div className="max-w-4xl mx-auto bg-[#393a3c] rounded-lg p-6 shadow-lg">
+            {/* Header Section */}
+            <div className="flex justify-between items-center mb-4">
+      {/* Left section: Time and Dropdown */}
+      <div className="flex items-center gap-4 ">
+        <p className="text-xl font-semibold text-gray-100">
+          6:48 PM
+        </p>
+
+        {/* Dropdown Button */}
+        <button
+      onClick={() => setDropdownOpen(!dropdownOpen)}
+      className="bg-[#393a3c] text-white-300 px-4 py-2 rounded-lg hover:bg-gray-600 flex items-center gap-2 border bottom-2"
+    >
+      {/* Tick icon */}
+      <CiCircleCheck className="w-6 h-6 text-white-500" />
+      
+      {/* Text */}
+      Finished generating
+
+      {/* Arrow down icon */}
+      <svg
+        className="w-4 h-4"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+      </svg>
+    </button>
+        {dropdownOpen && (
+          <ul className="absolute mt-2 bg-gray-700 text-gray-300 rounded-lg shadow-lg w-48">
+            {/* No options as per the requirement */}
+          </ul>
+        )}
+      </div>
+
+      {/* Right section: Thumbs Up and Thumbs Down */}
+      <div className="flex items-center gap-4">
+        {/* Thumbs Up Button */}
+        <button className="flex items-center justify-center p-2  text-gray-300 rounded-lg hover:bg-gray-600">
+          <FaRegThumbsUp className="w-6 h-6" />
+        </button>
+
+        {/* Thumbs Down Button */}
+        <button className="flex items-center justify-center p-2 text-gray-300 rounded-lg hover:bg-gray-600">
+          <FaRegThumbsDown className="w-6 h-6" />
+        </button>
+      </div>
+    </div>
+            <p className="text-sm  text-white-200 mb-4">
+                Sayf Al-Adi, Al Masri, and Hafiz have communication with Shaykh Mahmud.
+              </p>
+
+
+            {/* Table Section */}
+            <div className="overflow-x-auto">
+  {/* Content Outside the Table */}
+  <div className="border border-gray-600 p-4">
+  <div className="flex justify-between items-center mb-2 text-gray-300">
+
+    <p className="text-lg font-semibold">Relevant News Information</p>
+    <button className="text-gray-300 hover:text-white">
+      <FaDownload className="w-4 h-4" />
+    </button>
+    </div>
+
+
+  {/* Table */}
+  <table className="table-auto w-full text-left rounded-lg">
+    {/* Table Header */}
+    <thead className=" text-gray-300">
+      <tr>
+        <th className="py-2">Sources</th>
+        <th className="py-2">Time</th>
+        <th className="py-2">From Body</th>
+      </tr>
+    </thead>
+    {/* Table Body */}
+    <tbody className="text-gray-200 text-xs">
+      <tr className="">
+        <td className="py-2">Al Jazeera News</td>
+        <td className="py-2">12/09/2022 at 8:45PM</td>
+        <td className="py-2">
+          “Shaykh Mahmud sponsored Hafiz $50,000 for six months ...”
+          <br />
+          <span className="text-gray-400">+3 more instances</span>
+        </td>
+      </tr>
+      <tr className="">
+        <td className="py-2">Letter to Hafiz about Financial Sponsorship</td>
+        <td className="py-2">11/27/2022 at 8:32PM</td>
+        <td className="py-2">
+          This is the amount required for six months of financial sponsorship for you, $50,000...
+          <br />
+          <span className="text-gray-400">+2 more instances</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+
+</div>
+  
+            {/* Sources Section */}
+            <div className="mt-4">
+              <h3 className="text-lg font-semibold mb-2 text-gray-200">Sources:</h3>
+              <ul className="list-disc list-inside text-gray-400">
+              <div className="">
+              <span className="bg-[#4D4D4D] text-white text-xs px-2 py-1 rounded mr-2">
+                1. Letter to Hafiz about Financial Scholarship
+              </span>
+              <span className="bg-[#4D4D4D] text-white text-xs px-2 py-1 rounded mr-2">
+                2. Al Jazeera News
+              </span>
+
+            </div>
+              </ul>
+            </div>
+  
+
+
           </div>
         </div>
-    
-        {/* Server's response */}
-        <div className="mb-4">
-          <div className="bg-gray-800 p-4 rounded-lg text-sm">
-            Shaykh Mahmud communicates with Hafiz regularly for financial sponsorship updates.
-          </div>
+
+
+
         </div>
-    
-        {/* Additional user message */}
-        <div className="mb-4">
-          <div className="bg-[#333333] p-4 rounded-lg text-sm text-white text-right">
-            What is the purpose of the sponsorship?
-          </div>
-        </div>
-    
-        {/* Additional server response */}
-        <div className="mb-4">
-          <div className="bg-gray-800 p-4 rounded-lg text-sm">
-            The sponsorship is intended to support Hafiz's living expenses and education for six months.
-          </div>
-        </div>
-    
-        {/* User input field */}
-        <div className="mb-4">
+
+          {/* User input field */}
+          <div className="mb-4">
           <input
             type="text"
             placeholder="Type your message here..."
-            className="w-full px-4 py-2 border border-gray-700 bg-[#333333] rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-2 border border-gray-600 bg-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-gray-500"
           />
         </div>
-    
-        {/* Relevant News Information */}
-        <div className="bg-gray-800 p-4 rounded-lg border border-gray-700">
-          <h3 className="text-sm font-semibold mb-2 text-[#FF6B6B]">
-            Relevant News Information
-          </h3>
-          <ul className="text-sm text-gray-400">
-            <li className="mb-2">
-              <span className="font-bold text-white">Al Jazeera News</span> - Shaykh Mahmud
-              sponsored Hafiz $50,000 for six months.
-            </li>
-            <li>
-              <span className="font-bold text-white">Letter to Hafiz</span> - Amount required for
-              six months of financial sponsorship.
-            </li>
-          </ul>
-        </div>
+
+  
+  
+  
+
       </section>
     );
-    
+  };
+  
+
 
   const ResultsSection = () => (
     <div className="mt-6">
@@ -224,7 +369,7 @@
             key={index}
             className="flex items-start bg-[#2B2B2B] p-4 rounded-lg shadow"
           >
-            <div className="w-12 h-12 bg-gray-700 rounded-full flex items-center justify-center text-white font-bold">
+            <div className="w-12 h-12 bg-[#2e2f31] rounded-full flex items-center justify-center text-white font-bold">
               {String.fromCharCode(65 + index)}
             </div>
             <div className="ml-4 flex-1">
@@ -253,28 +398,82 @@
   );
 
   const Dashboard = () => {
-    // Declare the menuOpen state and its setter
     const [menuOpen, setMenuOpen] = useState(false);
+    const [selectedMenu, setSelectedMenu] = useState("Finance"); // Default to "Finance"
+
+
+  
+    const renderMainContent = () => {
+      switch (selectedMenu) {
+        case "Finance":
+          return (
+            <main className="flex-1 p-6 ">
+            <SearchBar selectedMenu={selectedMenu} />
+            <div className="grid grid-cols-2 gap-6">
+                <div>
+                  <ChatArena />
+                </div>
+                <div className="flex flex-col gap-6">
+                  <AISummary content="Finance Summary" />
+                  <ResultsSection results="Finance Results" />
+                </div>
+              </div>
+            </main>
+          );
+        case "HR":
+          return (
+            <main className="flex-1 p-6">
+            <SearchBar selectedMenu={selectedMenu} />
+            <div className="grid grid-cols-2 gap-6">
+                <div>
+                  <ChatArena />
+                </div>
+                <div className="flex flex-col gap-6">
+                  <AISummary content="HR Summary" />
+                  <ResultsSection results="HR Results" />
+                </div>
+              </div>
+            </main>
+          );
+        case "Supply Chain":
+          return (
+            <main className="flex-1 p-6">
+            <SearchBar selectedMenu={selectedMenu} />
+            <div className="grid grid-cols-2 gap-6">
+                <div>
+                  <ChatArena />
+                </div>
+                <div className="flex flex-col gap-6">
+                  <AISummary content="Supply Chain Summary" />
+                  <ResultsSection results="Supply Chain Results" />
+                </div>
+              </div>
+            </main>
+          );
+        case "Legal":
+          return (
+            <main className="flex-1 p-6">
+            <SearchBar selectedMenu={selectedMenu} />
+            <div className="grid grid-cols-2 gap-6">
+                <div>
+                  <ChatArena />
+                </div>
+                <div className="flex flex-col gap-6">
+                  <AISummary content="Legal Summary" />
+                  <ResultsSection results="Legal Results" />
+                </div>
+              </div>
+            </main>
+          );
+        default:
+          return null;
+      }
+    };
   
     return (
-      <div className="bg-[#1A1A1A] font-sans text-white h-screen flex">
-        <Sidebar setMenuOpen={setMenuOpen} menuOpen={menuOpen} />
-
-        <main className="flex-1 p-6">
-          <SearchBar />
-          <div className="grid grid-cols-2 gap-6">
-            {/* Left column for ChatArena */}
-            <div>
-              <ChatArena />
-            </div>
-  
-            {/* Right column for AISummary and ResultsSection */}
-            <div className="flex flex-col gap-6">
-              <AISummary />
-              <ResultsSection />
-            </div>
-          </div>
-        </main>
+      <div className="bg-[#1A1A1A] font-sans text-white min-h-screen flex">
+        <Sidebar setMenuOpen={setMenuOpen} menuOpen={menuOpen} setSelectedMenu={setSelectedMenu} />
+        {renderMainContent()}
       </div>
     );
   };
