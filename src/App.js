@@ -5,6 +5,7 @@ import Footer from './components/Footer';
 import Hero from './components/Hero';
 import Navbar from './components/Navbar';
 import Newsletter from './components/Newsletter';
+import Dashboard from './components/chatbot/Chatbot';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       {/* <Newsletter /> */}
       {/* <Cards /> */}
       {/* <Footer /> */}
+      <Dashboard />
     </div>
   );
 }
