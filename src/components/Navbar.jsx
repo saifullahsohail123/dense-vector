@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
 import LaptopImage from '../assets/logo.jpg';
+import { Link, useLocation } from 'react-router-dom';
+
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
@@ -8,7 +10,8 @@ const Navbar = () => {
   const handleNav = () => {
     setNav(!nav);
   };
-
+  const location = useLocation();
+  
   return (
     <div className='flex justify-between items-center h-20 mx-auto px-12 text-white bg-[linear-gradient(to_right,#393a3c_100%,#2f2f2f_90%)]'>
       <h1 className='w-full text-3xl font-bold flex items-center'>
@@ -16,14 +19,20 @@ const Navbar = () => {
         <span className='text-[#fff] text-2xl pl-2'>Dense Vector - Enterprise</span>
            </h1>
       <ul className='hidden md:flex items-center space-x-8'>
-        <li className='p-4 text-lg'>Home</li>
-        <li className='p-4 text-lg'>About</li>
-        <li className='p-4 text-lg'>Services</li>
+      <li className={`p-4 text-lg ${location.pathname === '/' ? 'text-[#4D4D4D]' : ''}`}>
+        <Link to="/">Home</Link>
+      </li>
+      <li className={`p-4 text-lg ${location.pathname === '/about' ? 'text-[#4D4D4D]' : ''}`}>
+        <Link to="/about">About</Link>
+      </li>
+      <li className={`p-4 text-lg ${location.pathname === '/services' ? 'text-[#4D4D4D]' : ''}`}>
+        <Link to="/services">Services</Link>
+      </li>
         <li className="flex items-center">
     <button className="px-4 py-2 border border-white text-white bg-transparent rounded whitespace-nowrap mr-2">
       Log In
     </button>
-    <button className="px-4 py-2 bg-gradient-to-r from-blue-400 to-pink-400 text-white rounded">
+    <button className="px-4 py-2 bg-gradient-to-r from-[#4D4D4D] to-[#1A1A1A] text-white rounded">
       Signup
     </button>
   </li>

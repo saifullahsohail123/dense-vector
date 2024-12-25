@@ -1,6 +1,12 @@
 import React from 'react';
 import Typed from 'react-typed';
 import { Link } from 'react-router-dom';
+import { FaUserTie } from "react-icons/fa";
+import { FaRegMoneyBillAlt  } from "react-icons/fa";
+import { FaBalanceScale } from "react-icons/fa";
+import { FaTruck } from "react-icons/fa";
+
+
 
 
 const Hero = () => {
@@ -40,7 +46,7 @@ Generative Technology
       style={{ boxShadow: "0 -4px 1px rgba(128, 128, 128, 0.5)" }}
     >
       <div className="bg-[#4a4b4d] w-16 h-16 rounded-full mx-auto flex items-center justify-center mb-4">
-        <i className="fas fa-users text-white text-2xl"></i>
+      <FaUserTie className="text-white text-2xl" />
       </div>
       <h4 className="text-xl font-semibold text-white mb-2">Human Resource Management</h4>
       <p className="text-gray-300 text-sm">
@@ -54,7 +60,7 @@ Generative Technology
       style={{ boxShadow: "0 -4px 1px rgba(128, 128, 128, 0.5)" }}
     >
       <div className="bg-[#4a4b4d] w-16 h-16 rounded-full mx-auto flex items-center justify-center mb-4">
-        <i className="fas fa-chart-line text-white text-2xl"></i>
+      <FaRegMoneyBillAlt  className="text-white text-2xl" />
       </div>
       <h4 className="text-xl font-semibold text-white mb-2">Finance Management</h4>
       <p className="text-gray-300 text-sm">
@@ -68,7 +74,7 @@ Generative Technology
       style={{ boxShadow: "0 -4px 1px rgba(128, 128, 128, 0.5)" }}
     >
       <div className="bg-[#4a4b4d] w-16 h-16 rounded-full mx-auto flex items-center justify-center mb-4">
-        <i className="fas fa-boxes text-white text-2xl"></i>
+      <FaTruck   className="text-white text-2xl" />
       </div>
       <h4 className="text-xl font-semibold text-white mb-2">Supply Chain Management</h4>
       <p className="text-gray-300 text-sm">
@@ -82,7 +88,7 @@ Generative Technology
       style={{ boxShadow: "0 -4px 1px rgba(128, 128, 128, 0.5)" }}
     >
       <div className="bg-[#4a4b4d] w-16 h-16 rounded-full mx-auto flex items-center justify-center mb-4">
-        <i className="fas fa-gavel text-white text-2xl"></i>
+      <FaBalanceScale  className="text-white text-2xl" />
       </div>
       <h4 className="text-xl font-semibold text-white mb-2">Legal & Compliance</h4>
       <p className="text-gray-300 text-sm">

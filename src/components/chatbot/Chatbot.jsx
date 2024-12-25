@@ -7,7 +7,21 @@
   import { FaRegThumbsUp, FaRegThumbsDown } from 'react-icons/fa';
   import { CiCircleCheck } from "react-icons/ci";
   import { FaDownload } from "react-icons/fa"; // Import the Download icon from react-icons
+  import {
+    Chart as ChartJS,
+    TimeScale,
+    LinearScale,
+    PointElement,
+    Tooltip,
+    Legend,
+  } from "chart.js";
+  import 'chartjs-adapter-date-fns'; // Import the date adapter for time scales
+  import { Scatter } from "react-chartjs-2";
+  
+// Register required components
+ChartJS.register(TimeScale, LinearScale, PointElement, Tooltip, Legend);
 
+  
 
 
   const Sidebar = ({ setMenuOpen, menuOpen, setSelectedMenu }) => {
@@ -59,6 +73,103 @@
     );
   };
   
+
+  
+
+  
+  const Graph = () => {
+    // Data for the graph
+    const data = {
+      datasets: [
+        {
+          label: "Shaykh Mahmud",
+          data: [
+            { x: new Date("2022-12-11T12:27:26").getTime(), y: 1 },
+            { x: new Date("2022-12-11T12:45:04").getTime(), y: 1 },
+            { x: new Date("2022-12-12T10:45:33").getTime(), y: 1 },
+          ],
+          borderColor: "rgb(239, 68, 68)", // Tailwind red-500
+          backgroundColor: "rgb(239, 68, 68)",
+          pointRadius: 6,
+        },
+        {
+          label: "Sayf Al-Adl",
+          data: [
+            { x: new Date("2022-12-11T12:27:26").getTime(), y: 2 },
+            { x: new Date("2022-12-12T10:45:33").getTime(), y: 2 },
+          ],
+          borderColor: "rgb(239, 68, 68)",
+          backgroundColor: "rgb(239, 68, 68)",
+          pointRadius: 6,
+        },
+        {
+          label: "Al Masri",
+          data: [
+            { x: new Date("2022-12-11T12:45:04").getTime(), y: 3 },
+            { x: new Date("2022-12-12T10:45:33").getTime(), y: 3 },
+          ],
+          borderColor: "rgb(234, 179, 8)", // Tailwind yellow-500
+          backgroundColor: "rgb(234, 179, 8)",
+          pointRadius: 6,
+        },
+        {
+          label: "Hafiz",
+          data: [
+            { x: new Date("2022-12-12T10:45:33").getTime(), y: 4 },
+            { x: new Date("2022-12-13T02:14:11").getTime(), y: 4 },
+          ],
+          borderColor: "rgb(234, 179, 8)",
+          backgroundColor: "rgb(234, 179, 8)",
+          pointRadius: 6,
+        },
+      ],
+    };
+  
+    // Chart options
+    const options = {
+      responsive: true,
+      maintainAspectRatio: false, // Disable aspect ratio to allow full width and height
+      scales: {
+        x: {
+          type: "time",
+          time: {
+            unit: "hour",
+            tooltipFormat: "MMM dd, yyyy HH:mm:ss",
+          },
+          grid: {
+            color: "rgb(107, 114, 128)", // Tailwind gray-500
+          },
+          ticks: {
+            color: "white",
+          },
+        },
+        y: {
+          grid: {
+            color: "rgb(107, 114, 128)",
+          },
+          ticks: {
+            color: "white",
+          },
+        },
+      },
+      plugins: {
+        legend: {
+          display: true,
+          labels: {
+            color: "white",
+          },
+        },
+      },
+    };
+  
+    return (
+      <div className="w-full h-full bg-gray-800 p-6 rounded-lg">
+        <Scatter data={data} options={options} />
+      </div>
+    );
+  };
+  
+
   
   
   
@@ -147,8 +258,9 @@
         <div>
           <h3 className="text-sm font-semibold mb-2">Individual Risk & Interactions</h3>
           <div className="h-48 bg-gray-800 border border-gray-700 rounded-lg flex items-center justify-center">
-            <canvas ref={chartRef} className="w-full h-full"></canvas>
-          </div>
+          <Graph />         
+          
+           </div>
         </div>
       </section>
     );
