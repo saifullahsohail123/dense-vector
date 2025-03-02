@@ -76,101 +76,165 @@ ChartJS.register(TimeScale, LinearScale, PointElement, Tooltip, Legend);
 
   
 
+
   
+  
+  // const Graph = () => {
+  //   // Data for the graph
+
+
+
+
+  //   const data = {
+  //     datasets: [
+  //       {
+  //         label: "Shaykh Mahmud",
+  //         data: [
+  //           { x: new Date("2022-12-11T12:27:26").getTime(), y: 1 },
+  //           { x: new Date("2022-12-11T12:45:04").getTime(), y: 1 },
+  //           { x: new Date("2022-12-12T10:45:33").getTime(), y: 1 },
+  //         ],
+  //         borderColor: "rgb(239, 68, 68)", // Tailwind red-500
+  //         backgroundColor: "rgb(239, 68, 68)",
+  //         pointRadius: 6,
+  //       },
+  //       {
+  //         label: "Sayf Al-Adl",
+  //         data: [
+  //           { x: new Date("2022-12-11T12:27:26").getTime(), y: 2 },
+  //           { x: new Date("2022-12-12T10:45:33").getTime(), y: 2 },
+  //         ],
+  //         borderColor: "rgb(239, 68, 68)",
+  //         backgroundColor: "rgb(239, 68, 68)",
+  //         pointRadius: 6,
+  //       },
+  //       {
+  //         label: "Al Masri",
+  //         data: [
+  //           { x: new Date("2022-12-11T12:45:04").getTime(), y: 3 },
+  //           { x: new Date("2022-12-12T10:45:33").getTime(), y: 3 },
+  //         ],
+  //         borderColor: "rgb(234, 179, 8)", // Tailwind yellow-500
+  //         backgroundColor: "rgb(234, 179, 8)",
+  //         pointRadius: 6,
+  //       },
+  //       {
+  //         label: "Hafiz",
+  //         data: [
+  //           { x: new Date("2022-12-12T10:45:33").getTime(), y: 4 },
+  //           { x: new Date("2022-12-13T02:14:11").getTime(), y: 4 },
+  //         ],
+  //         borderColor: "rgb(234, 179, 8)",
+  //         backgroundColor: "rgb(234, 179, 8)",
+  //         pointRadius: 6,
+  //       },
+  //     ],
+  //   };
+  
+  //   // Chart options
+  //   const options = {
+  //     responsive: true,
+  //     maintainAspectRatio: false, // Disable aspect ratio to allow full width and height
+  //     scales: {
+  //       x: {
+  //         type: "time",
+  //         time: {
+  //           unit: "hour",
+  //           tooltipFormat: "MMM dd, yyyy HH:mm:ss",
+  //         },
+  //         grid: {
+  //           color: "rgb(107, 114, 128)", // Tailwind gray-500
+  //         },
+  //         ticks: {
+  //           color: "white",
+  //         },
+  //       },
+  //       y: {
+  //         grid: {
+  //           color: "rgb(107, 114, 128)",
+  //         },
+  //         ticks: {
+  //           color: "white",
+  //         },
+  //       },
+  //     },
+  //     plugins: {
+  //       legend: {
+  //         display: true,
+  //         labels: {
+  //           color: "white",
+  //         },
+  //       },
+  //     },
+  //   };
+  
+  //   return (
+  //     <div className="w-full h-full bg-gray-800 p-6 rounded-lg">
+  //       <Scatter data={data} options={options} />
+  //     </div>
+  //   );
+  // };
+  
+
   const Graph = () => {
-    // Data for the graph
-    const data = {
-      datasets: [
-        {
-          label: "Shaykh Mahmud",
-          data: [
-            { x: new Date("2022-12-11T12:27:26").getTime(), y: 1 },
-            { x: new Date("2022-12-11T12:45:04").getTime(), y: 1 },
-            { x: new Date("2022-12-12T10:45:33").getTime(), y: 1 },
-          ],
-          borderColor: "rgb(239, 68, 68)", // Tailwind red-500
-          backgroundColor: "rgb(239, 68, 68)",
-          pointRadius: 6,
-        },
-        {
-          label: "Sayf Al-Adl",
-          data: [
-            { x: new Date("2022-12-11T12:27:26").getTime(), y: 2 },
-            { x: new Date("2022-12-12T10:45:33").getTime(), y: 2 },
-          ],
-          borderColor: "rgb(239, 68, 68)",
-          backgroundColor: "rgb(239, 68, 68)",
-          pointRadius: 6,
-        },
-        {
-          label: "Al Masri",
-          data: [
-            { x: new Date("2022-12-11T12:45:04").getTime(), y: 3 },
-            { x: new Date("2022-12-12T10:45:33").getTime(), y: 3 },
-          ],
-          borderColor: "rgb(234, 179, 8)", // Tailwind yellow-500
-          backgroundColor: "rgb(234, 179, 8)",
-          pointRadius: 6,
-        },
-        {
-          label: "Hafiz",
-          data: [
-            { x: new Date("2022-12-12T10:45:33").getTime(), y: 4 },
-            { x: new Date("2022-12-13T02:14:11").getTime(), y: 4 },
-          ],
-          borderColor: "rgb(234, 179, 8)",
-          backgroundColor: "rgb(234, 179, 8)",
-          pointRadius: 6,
-        },
-      ],
-    };
+    const [imageSrc, setImageSrc] = useState("");
+    const [report, setReport] = useState("");
   
-    // Chart options
-    const options = {
-      responsive: true,
-      maintainAspectRatio: false, // Disable aspect ratio to allow full width and height
-      scales: {
-        x: {
-          type: "time",
-          time: {
-            unit: "hour",
-            tooltipFormat: "MMM dd, yyyy HH:mm:ss",
-          },
-          grid: {
-            color: "rgb(107, 114, 128)", // Tailwind gray-500
-          },
-          ticks: {
-            color: "white",
-          },
-        },
-        y: {
-          grid: {
-            color: "rgb(107, 114, 128)",
-          },
-          ticks: {
-            color: "white",
-          },
-        },
-      },
-      plugins: {
-        legend: {
-          display: true,
-          labels: {
-            color: "white",
-          },
-        },
-      },
+    useEffect(() => {
+      // Fetch the visualization data including the report and the image
+      fetch("http://127.0.0.1:5000/get-visualization-data")
+        .then((response) => response.json())
+        .then((data) => {
+          // Set the image source for the graph
+          setImageSrc("http://127.0.0.1:5000/generate-graph");
+          // Set the report content
+          setReport(data.visualization_and_report.report);
+        })
+        .catch((error) => console.error("Error fetching visualization data:", error));
+    }, []);
+  
+    // Function to convert **bold** markdown to actual HTML <strong> tags
+    const renderMarkdown = (text) => {
+      // Convert newlines to <br />
+      const newText = text.replace(/\n/g, "<br />");
+      // Convert **bold** markdown to <strong>
+      const boldText = newText.replace(/\*\*(.*?)\*\*/g, '<strong style="color: #FF6B6B;">$1</strong>');
+      return { __html: boldText };
     };
   
     return (
-      <div className="w-full h-full bg-gray-800 p-6 rounded-lg">
-        <Scatter data={data} options={options} />
-      </div>
-    );
-  };
+      <div className="space-y-8 text-white">
+
+        {/* Display the graph below the report */}
+        <div className="h-100 bg-gray-800 border border-gray-700 rounded-lg flex items-center justify-center">
+          {imageSrc ? (
+            <img
+              src={imageSrc}
+              alt="Graph"
+              className="w-auto h-full object-contain"
+            />
+          ) : (
+            "Loading graph..."
+          )}
+        </div>
+
+        {/* Display the report with improved readability */}
+        <div className="mb-8 p-6 border border-gray-600 rounded-lg">
+          {/* <p className="text-2xl font-semibold text-[#FF6B6B] mb-4">Report:</p> */}
+          <div
+            className="text-md text-gray-300"
+            dangerouslySetInnerHTML={renderMarkdown(report)}
+          />
+        </div>
   
 
+      </div>
+    );
+    };
+     
   
+
+
   
   
   const SearchBar = ({ selectedMenu }) => (
@@ -256,8 +320,8 @@ ChartJS.register(TimeScale, LinearScale, PointElement, Tooltip, Legend);
           </p>
         </div>
         <div>
-          <h3 className="text-sm font-semibold mb-2">Individual Risk & Interactions</h3>
-          <div className="h-48 bg-gray-800 border border-gray-700 rounded-lg flex items-center justify-center">
+          {/* <h3 className="text-sm font-semibold mb-2">Individual Risk & Interactions</h3> */}
+          <div className="h-100 rounded-lg flex items-center justify-center">
           <Graph />         
           
            </div>
